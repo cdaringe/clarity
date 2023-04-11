@@ -67,7 +67,14 @@ similar model?
 | Transport Layer    | ByteCode                              |
 | Session Layer      | Source Code                           |
 | Presentation Layer | System Declaration (VPL, `clarity`)   |
-| Application Layer  | Nirvana (non-existent :))             |
+| Application Layer  | Nirvana (non-existent)                |
+
+Why is it that we are content exchanging design at an arbitrary low-level?
+Should we not strive to make it as easy as possible to describe and communicate
+our software's capability, and leave the rest to compilers? For a community that
+loves giving work to compilers, why have we not yet asked this of them? For a
+community that loves building user interfaces, why have we not yet built systems
+that communicate engineering design effectively, across PLs?
 
 Other constraints:
 
