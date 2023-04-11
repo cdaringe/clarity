@@ -23,16 +23,18 @@ solution that can present an excellent visual explorer of a system, using
 standardized flows and constraints.
 
 clarity is naive attempt to apply VPL strategies to be compatible with (some)
-general purpose language domains.
+general purpose language domains. it generally applies to top-level artifacts,
+vs library components.
 
-naively, most systems:
+naively, most top-level artifacts in software do the following:
 
 - accept input
-- parse/map/reduce
+- parse/map/reduce content from input sources
 - do effects
 - yield output
+- ...repeat
 
-these entities can absolutely be modelled using VPL. The trick is, GPL code
+These entities can absolutely be modelled using a VPL. The trick is, GPL code
 doesn't project well into visual models. GPL code is in of itself a DSL for that
 programming context, not a higher level context of systems/flows. projecting up
 from code is hard, but projecting down into code from a systems DSL is easy.
