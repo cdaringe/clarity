@@ -1,5 +1,7 @@
-import "@unocss/reset/tailwind.css";
-import "uno.css";
+// https://github.com/unocss/unocss/issues/2584
+// import "@unocss/reset/tailwind.css";
+// import "uno.css";
+import "./globals.css";
 
 export const metadata = {
   title: "clarity",

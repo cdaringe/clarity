@@ -31,7 +31,11 @@
     "@storybook/react": "^7.0.9",
     "@storybook/testing-library": "^0.0.14-next.2",
     "@unocss/webpack": "0.51.12",
+    "autoprefixer": "10.4.14",
     "eslint-plugin-storybook": "^0.6.12",
-    "storybook": "^7.0.9"
+    "postcss": "8.4.23",
+    "storybook": "^7.0.9",
+    "tailwindcss": "3.3.2",
+    "tsconfig-paths-webpack-plugin": "4.0.1"
   }
 }

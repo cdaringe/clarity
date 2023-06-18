@@ -1,0 +1,23 @@
+{
+  "name": "clarity-components",
+  "version": "0.0.1",
+  "main": "./dist/",
+  "peerDependencies": {
+    "lodash.debounce": "4.0.8",
+    "react": ">=16",
+    "react-dom": ">=16"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "4.0.7",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "react": ">=16",
+    "react-dom": ">=16"
+  },
+  "dependencies": {
+    "set-fns": "1.0.0"
+  },
+  "scripts": {
+    "dev": "tsc -w"
+  }
+}
