@@ -5,13 +5,13 @@
     "noErrorTruncation": true,
     "baseUrl": ".",
     "paths": {
-      "clarity-adapt": ["./packages/adapt/tsconfig.json"],
-      "clarity-components": ["./packages/components/tsconfig.json"],
-      "clarity-log": ["./packages/log/tsconfig.json"],
-      "clarity-model": ["./packages/model/tsconfig.json"],
-      "clarity-node": ["./packages/node/tsconfig.json"],
-      "clarity-react": ["./packages/react/tsconfig.json"],
-      "clarity-ui": ["./apps/ui/tsconfig.json"]
+      "clarity-adapt": ["./packages/adapt/"],
+      "clarity-components": ["./packages/components/"],
+      "clarity-log": ["./packages/log/"],
+      "clarity-model": ["./packages/model/"],
+      "clarity-node": ["./packages/node/"],
+      "clarity-react": ["./packages/react/"],
+      "clarity-ui": ["./apps/ui/"]
     }
   },
   "exclude": ["dist", "**/dist/**"],
