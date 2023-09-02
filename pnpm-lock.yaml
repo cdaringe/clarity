@@ -27,11 +27,14 @@ importers:
         specifier: ^20.3.1
         version: 20.3.1
       '@types/react':
-        specifier: ^18.2.12
-        version: 18.2.12
+        specifier: 18.2.21
+        version: 18.2.21
       '@types/react-dom':
-        specifier: ^18.2.5
+        specifier: 18.2.5
         version: 18.2.5
+      clarity-components:
+        specifier: workspace:*
+        version: link:../../packages/components
       eslint:
         specifier: ^8.43.0
         version: 8.43.0
@@ -42,7 +45,7 @@ importers:
         specifier: ^13.4.6
         version: 13.4.6(@babel/core@7.22.5)(react-dom@18.2.0)(react@18.2.0)
       react:
-        specifier: ^18.2.0
+        specifier: 18.2.0
         version: 18.2.0
       react-dom:
         specifier: ^18.2.0
@@ -118,6 +121,9 @@ importers:
 
   packages/components:
     dependencies:
+      clarity-node:
+        specifier: workspace:*
+        version: link:../node
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -129,16 +135,16 @@ importers:
         specifier: 4.14.195
         version: 4.14.195
       '@types/react':
-        specifier: 18.2.6
-        version: 18.2.6
+        specifier: 18.2.21
+        version: 18.2.21
       '@types/react-dom':
-        specifier: 18.2.4
-        version: 18.2.4
+        specifier: 18.2.5
+        version: 18.2.5
       clarity-tsconfig:
         specifier: workspace:*
         version: link:../tsconfig
       react:
-        specifier: '>=16'
+        specifier: 18.2.0
         version: 18.2.0
       react-dom:
         specifier: '>=16'
@@ -169,7 +175,13 @@ importers:
       clarity-react:
         specifier: workspace:*
         version: link:../react
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
     devDependencies:
+      '@types/react':
+        specifier: 18.2.21
+        version: 18.2.21
       clarity-tsconfig:
         specifier: workspace:*
         version: link:../tsconfig
@@ -177,17 +189,17 @@ importers:
   packages/react:
     dependencies:
       react:
-        specifier: '>=16'
+        specifier: 18.2.0
         version: 18.2.0
       react-dom:
         specifier: '>=16'
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@types/react':
-        specifier: '>=18'
-        version: 18.2.12
+        specifier: 18.2.21
+        version: 18.2.21
       '@types/react-dom':
-        specifier: '>=18'
+        specifier: 18.2.5
         version: 18.2.5
       clarity-tsconfig:
         specifier: workspace:*
@@ -3040,7 +3052,7 @@ packages:
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.5
-      '@types/react': 18.2.12
+      '@types/react': 18.2.21
       react: 18.2.0
     dev: true
 
@@ -4622,31 +4634,17 @@ packages:
   /@types/range-parser@1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
 
-  /@types/react-dom@18.2.4:
-    resolution: {integrity: sha512-G2mHoTMTL4yoydITgOGwWdWMVd8sNgyEP85xVmMKAPUBwQWm9wBPQUmvbeF4V3WBY1P7mmL4BkjQ0SqUpf1snw==}
-    dependencies:
-      '@types/react': 18.2.6
-    dev: true
-
   /@types/react-dom@18.2.5:
     resolution: {integrity: sha512-sRQsOS/sCLnpQhR4DSKGTtWFE3FZjpQa86KPVbhUqdYMRZ9FEFcfAytKhR/vUG2rH1oFbOOej6cuD7MFSobDRQ==}
     dependencies:
-      '@types/react': 18.2.12
+      '@types/react': 18.2.21
 
-  /@types/react@18.2.12:
-    resolution: {integrity: sha512-ndmBMLCgn38v3SntMeoJaIrO6tGHYKMEBohCUmw8HoLLQdRMOIGXfeYaBTLe2lsFaSB3MOK1VXscYFnmLtTSmw==}
+  /@types/react@18.2.21:
+    resolution: {integrity: sha512-neFKG/sBAwGxHgXiIxnbm3/AAVQ/cMRS93hvBpg8xYRbeQSPVABp9U2bRnPf0iI4+Ucdv3plSxKK+3CW2ENJxA==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
-
-  /@types/react@18.2.6:
-    resolution: {integrity: sha512-wRZClXn//zxCFW+ye/D2qY65UsYP1Fpex2YXorHc8awoNamkMZSvBxwxdYVInsHOZZd2Ppq8isnSzJL5Mpf8OA==}
-    dependencies:
-      '@types/prop-types': 15.7.5
-      '@types/scheduler': 0.16.3
-      csstype: 3.1.2
-    dev: true
 
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}

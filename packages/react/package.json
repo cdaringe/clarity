@@ -1,19 +1,19 @@
 {
   "name": "clarity-react",
   "version": "0.0.1",
-  "main": "./dist/index.ts",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/src/index.ts",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"
   },
   "peerDependencies": {
-    "react": ">=16",
+    "react": "18.2.0",
     "react-dom": ">=16"
   },
   "devDependencies": {
-    "@types/react": ">=18",
-    "@types/react-dom": ">=18",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.5",
     "clarity-tsconfig": "workspace:*"
   },
   "dependencies": {}

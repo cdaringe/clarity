@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "clarity-tsconfig/react/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "jsx": "react",
-    "esModuleInterop": true
-  }
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*", "tests/**/*"],
+  "references": [{ "path": "../node" }]
 }

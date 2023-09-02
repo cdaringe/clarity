@@ -9,6 +9,6 @@
   "scripts": {
     "format": "prettier --write .",
     "test": "pnpm -r test",
-    "build": "tsc"
+    "build": "tsc --build --verbose"
   }
 }

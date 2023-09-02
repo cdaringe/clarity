@@ -1,11 +1,12 @@
-import React from "react";
 import {
   ConstNodeProps,
   FcDiv,
   NodeComponent,
   NodeProps,
   StandardNodeProps,
-} from "../../node/mod";
+  getInputIds,
+} from "clarity-node";
+import React from "react";
 import { ArrowSvg } from "./icon/ArrowSvg";
 
 export const getNodeInputElementId = (id: string, inputId: string) =>
@@ -68,16 +69,18 @@ export const ConstNode: FcDiv<ConstNodeProps> = ({
   </div>
 );
 
-export const StandardNode: FcDiv<StandardNodeProps> = ({
-  id,
-  children,
-  name = "-",
-  type,
-  inputsIds: inputs = [],
-  outputs = [],
-  processor,
-  ...rest
-}) => {
+export const StandardNode: FcDiv<StandardNodeProps> = (node) => {
+  const {
+    id,
+    children,
+    name = "-",
+    type,
+    inputs: _,
+    outputs = [],
+    processor,
+    ...rest
+  } = node;
+  const inputIds = getInputIds(node);
   return (
     <div id={id} style={{ display: "flex", flexDirection: "column" }} {...rest}>
       {/* INPUTS */}
@@ -90,8 +93,8 @@ export const StandardNode: FcDiv<StandardNodeProps> = ({
         }}
       >
         <div style={{ display: "flex" }}>
-          {inputs.length ? (
-            inputs.map((input_id) => (
+          {inputIds.length ? (
+            inputIds.map((input_id) => (
               <ArrowSvg
                 style={{ marginRight: 2 }}
                 id={getNodeInputElementId(id, input_id)}
@@ -156,9 +159,9 @@ export const StandardNode: FcDiv<StandardNodeProps> = ({
   );
 };
 
+import { NodeGroupProps, getOutputs } from "clarity-node";
 import { groupBy } from "lodash";
 import { intersect } from "set-fns";
-import { NodeGroupProps, getOutputs } from "../../node/mod";
 import { DirectBus } from "./DirectBus";
 
 export const NodeGroup: FcDiv<NodeGroupProps> = ({
@@ -170,7 +173,7 @@ export const NodeGroup: FcDiv<NodeGroupProps> = ({
   const children = React.useMemo(
     () =>
       nodes.map((node, i) => {
-        const inputIds = new Set("inputs" in node ? node.inputsIds : []);
+        const inputIds = new Set(getInputIds(node));
         const prev = nodes[i - 1];
         prev && prevNodeProps.push(prev);
         const directIo = prevNodeProps

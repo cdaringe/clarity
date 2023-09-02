@@ -1,7 +1,7 @@
 {
   "name": "clarity-adapt-ts",
-  "main": "./dist/index.ts",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/src/index.ts",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"

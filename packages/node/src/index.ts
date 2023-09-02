@@ -1,4 +1,5 @@
 import type { FCC } from "clarity-react";
+import React from "react";
 
 export type ClarityInput<T = unknown> =
   | ClarityConstInput<T>
@@ -21,10 +22,10 @@ export type StandardNodeProps = {
   id: string;
   name: string;
   type: string;
-  inputsIds?: string[]; // ClarityStandardInput[]; // {
-  // embedded?: ClarityConstInput[];
-  // external: ClarityStandardInput[];
-  // };
+  inputs?: {
+    embeddedIds?: string[]; // ClarityConstInput[];
+    externalIds?: string[]; // ClarityStandardInput[];
+  };
   outputs?: ClarityStandardInput[];
   processor?: string;
 };
@@ -48,6 +49,12 @@ export type NodeGroupProps = {
 type IOid = string;
 
 export type NodeComponent = FcDiv<NodeProps<any>>;
+
+export const getInputIds = (node: NodeProps): string[] => {
+  return "inputs" in node && node.inputs
+    ? [...(node.inputs.embeddedIds || []), ...(node.inputs.externalIds || [])]
+    : [];
+};
 
 export const getOutputs = (node: NodeProps): ClarityInput[] => {
   if ("outputs" in node) {

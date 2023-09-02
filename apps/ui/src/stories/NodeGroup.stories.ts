@@ -45,19 +45,24 @@ export const BasicDirectIo: Story = {
             id: "n4",
             name: "plus2",
             type: "whatever,man",
-            inputsIds: {
-              embedded: [{ value: 2, type: "u8", id: "n3_i0" }],
-              external: [
-                {
-                  id: "n3_i1",
-                  type: "u8",
-                },
-              ],
+            inputs: {
+              embeddedIds: ["n3_i0", "n3_i1"],
+              externalIds: ["g1_p_sum"],
             },
-          },
-          {
-            id: "g1_p_sum",
-            processor: "sum",
+            // {
+            //   embedded: [{ value: 2, type: "u8", id: "n3_i0" }],
+            //   external: [
+            //     {
+            //       id: "n3_i1",
+            //       type: "u8",
+            //     },
+            //   ],
+            // },
+            // },
+            // {
+            //   id: "g1_p_sum",
+            //   processor: "sum",
+            // },
           },
         ],
       },

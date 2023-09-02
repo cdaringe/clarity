@@ -2,6 +2,8 @@
 // uno.config.ts
 import { defineConfig, presetUno } from "unocss";
 
-export default defineConfig({
+const config = defineConfig({
   presets: [presetUno()],
-});
+}) as any;
+
+export default config;

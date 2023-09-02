@@ -3,5 +3,6 @@
   "extends": "clarity-tsconfig/node/tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist"
-  }
+  },
+  "include": ["src/**/*", "tests/**/*"]
 }

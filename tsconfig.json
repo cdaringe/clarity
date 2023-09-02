@@ -1,12 +1,19 @@
 {
-  "references": [
-    { "path": "./packages/adapt/tsconfig.json" },
-    { "path": "./packages/components/tsconfig.json" },
-    { "path": "./packages/log/tsconfig.json" },
-    { "path": "./packages/model/tsconfig.json" },
-    { "path": "./packages/node/tsconfig.json" },
-    { "path": "./packages/react/tsconfig.json" },
-    { "path": "./apps/ui/tsconfig.json" }
-  ],
-  "exclude": ["dist", "**/dist/**"]
+  "references": [{ "path": "./tsconfig.build.json" }],
+  "compilerOptions": {
+    "composite": true,
+    "noErrorTruncation": true,
+    "paths": {
+      "clarity-adapt": ["./packages/adapt/tsconfig.json"],
+      "clarity-components": ["./packages/components/tsconfig.json"],
+      "clarity-log": ["./packages/log/tsconfig.json"],
+      "clarity-model": ["./packages/model/tsconfig.json"],
+      "clarity-node": ["./packages/node/tsconfig.json"],
+      "clarity-react": ["./packages/react/tsconfig.json"],
+      "clarity-ui": ["./apps/ui/tsconfig.json"]
+    }
+  },
+  "exclude": ["dist", "**/dist/**"],
+  "files": [],
+  "include": []
 }

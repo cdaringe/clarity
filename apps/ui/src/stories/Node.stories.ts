@@ -13,7 +13,7 @@ const meta: Meta<typeof Node> = {
       description: "name of the abstract type of a node",
       defaultValue: "foo",
     },
-    inputsIds: {},
+    inputs: {},
   },
 };
 
@@ -37,7 +37,7 @@ export const Processor: Story = {
 export const Standard: Story = {
   args: {
     type: "middleware",
-    inputsIds: ["i1", "i2", "i3"],
+    inputs: { externalIds: ["i1", "i2", "i3"] },
     outputs: [
       { id: "o1", type: "u8" },
       { id: "o2", type: "u8" },
@@ -55,7 +55,7 @@ export const SumConst: Story = {
         processor: "sum",
         name: "node_sum",
         type: "std::sum",
-        inputsIds: ["value_uno", "value_dos"],
+        inputs: { externalIds: ["value_uno", "value_dos"] },
       },
     ],
   },
