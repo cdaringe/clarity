@@ -3,6 +3,7 @@
   "compilerOptions": {
     "composite": true,
     "noErrorTruncation": true,
+    "baseUrl": ".",
     "paths": {
       "clarity-adapt": ["./packages/adapt/tsconfig.json"],
       "clarity-components": ["./packages/components/tsconfig.json"],
