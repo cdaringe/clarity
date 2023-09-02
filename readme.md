@@ -1,5 +1,7 @@
 # clarity
 
+[![main](https://github.com/cdaringe/clarity/actions/workflows/main.yml/badge.svg)](https://github.com/cdaringe/clarity/actions/workflows/main.yml)
+
 **warning**: this readme is a thought dump. don't read it ;)
 
 clarity is a means to build software.

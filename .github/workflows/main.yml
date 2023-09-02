@@ -31,3 +31,4 @@ jobs:
           pnpm install
           pnpm format:check
           pnpm build
+          cd apps/ui && pnpm run build-storybook
