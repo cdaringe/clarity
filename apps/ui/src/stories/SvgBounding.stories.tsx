@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
 import {
   SvgBounding as Component,
   Props,
   useResponsiveLineCoords,
 } from "clarity-components";
+import React from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Component> = {

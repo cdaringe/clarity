@@ -8,6 +8,7 @@
   },
   "scripts": {
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "pnpm -r test",
     "build": "tsc --build --verbose"
   }
