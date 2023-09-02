@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "target": "ESNext",
+    "module": "commonjs",
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "sourceMap": true
+  }
+}

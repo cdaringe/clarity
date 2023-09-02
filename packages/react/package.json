@@ -1,5 +1,6 @@
 {
-  "name": "clarity-components",
+  "name": "clarity-react",
+  "version": "0.0.1",
   "main": "./dist/index.ts",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -11,15 +12,9 @@
     "react-dom": ">=16"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.195",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
-    "react": ">=16",
-    "react-dom": ">=16",
+    "@types/react": ">=18",
+    "@types/react-dom": ">=18",
     "clarity-tsconfig": "workspace:*"
   },
-  "dependencies": {
-    "lodash": "4.17.21",
-    "set-fns": "1.0.0"
-  }
+  "dependencies": {}
 }

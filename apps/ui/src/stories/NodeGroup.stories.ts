@@ -23,8 +23,8 @@ type Story = StoryObj<typeof Component>;
 export const Primary: Story = {
   args: {
     nodes: [
-      { name: "foo", type: "foo" },
-      { name: "bar", type: "bar" },
+      { id: "a", name: "foo", type: "foo" },
+      { id: "b", name: "bar", type: "bar" },
     ],
   },
 };
@@ -32,22 +32,34 @@ export const Primary: Story = {
 export const BasicDirectIo: Story = {
   args: {
     io: {
-      n1_o1: new Set(["n2_i1"]),
+      n1_o1: new Set(["n3_i1"]),
     },
     nodes: [
+      { const: { value: 9, type: "u8", id: "n2_o1" }, id: "n2" },
       { const: { value: 5, type: "u8", id: "n1_o1" }, id: "n1" },
       {
-        id: "n2",
-        name: "plus2",
-        type: "whatever,man",
-        inputs: {
-          external: [
-            {
-              id: "n2_i1",
-              type: "u8",
+        id: "n3",
+        io: {},
+        nodes: [
+          {
+            id: "n4",
+            name: "plus2",
+            type: "whatever,man",
+            inputsIds: {
+              embedded: [{ value: 2, type: "u8", id: "n3_i0" }],
+              external: [
+                {
+                  id: "n3_i1",
+                  type: "u8",
+                },
+              ],
             },
-          ],
-        },
+          },
+          {
+            id: "g1_p_sum",
+            processor: "sum",
+          },
+        ],
       },
     ],
   },

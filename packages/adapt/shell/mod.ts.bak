@@ -1,5 +1,6 @@
-// deno-lint-ignore-file no-explicit-any
-import { assert, log, model, oak } from "./deps.ts";
+import assert from "assert";
+import Application from "koa";
+import { model } from "../deps";
 
 type SystemState<ReqState = Record<string, unknown>> = {
   request: ReqState;
@@ -7,8 +8,8 @@ type SystemState<ReqState = Record<string, unknown>> = {
   serversByName: Record<string, ClarityApplication>;
 };
 
-type ClarityApplication = oak.Application<SystemState>;
-type ClarityMiddleware = oak.Middleware<SystemState>;
+type ClarityApplication = Application<SystemState>;
+type ClarityMiddleware = Application.Middleware<SystemState>;
 
 function assertNever(_: never, msg: string): void {
   throw new Error(msg);
@@ -17,9 +18,9 @@ function assertNever(_: never, msg: string): void {
 function middlewarseByType(
   node: string,
   middlewaresById: Record<string, ClarityMiddleware>,
-  app: ClarityApplication,
+  app: ClarityApplication
 ): ClarityMiddleware {
-  const t = app.state.sys.entities[node];
+  const t = app.context.state.sys.entities[node];
   assert(t, `missing entity: ${node}`);
   switch (t.kind) {
     case "bodyparser": {
@@ -28,26 +29,26 @@ function middlewarseByType(
         return next();
       };
     }
-    case "router": {
-      const router = new oak.Router<SystemState>();
-      for (const key in t.payload) {
-        const routingDecl = t.payload[key as keyof typeof t.payload];
-        assert(routingDecl, `missing routing configuration for path: ${key}`);
-        const methodName = routingDecl.method.toLowerCase() as "get";
-        const childMw = routingDecl.entityId
-          ? bindMiddlewareGraph(routingDecl.entityId, middlewaresById, app)
-          : null;
-        router[methodName](key, async function handleRoute(ctx, next) {
-          if (childMw) {
-            await childMw(ctx, next);
-          } else {
-            // no entity provided. support the route... but it's a no-op, and
-            // will likely 404 in other middleware
-          }
-        });
-      }
-      return router.routes();
-    }
+    // case "router": {
+    //   const router = new oak.Router<SystemState>();
+    //   for (const key in t.payload) {
+    //     const routingDecl = t.payload[key as keyof typeof t.payload];
+    //     assert(routingDecl, `missing routing configuration for path: ${key}`);
+    //     const methodName = routingDecl.method.toLowerCase() as "get";
+    //     const childMw = routingDecl.entityId
+    //       ? bindMiddlewareGraph(routingDecl.entityId, middlewaresById, app)
+    //       : null;
+    //     router[methodName](key, async function handleRoute(ctx, next) {
+    //       if (childMw) {
+    //         await childMw(ctx, next);
+    //       } else {
+    //         // no entity provided. support the route... but it's a no-op, and
+    //         // will likely 404 in other middleware
+    //       }
+    //     });
+    //   }
+    //   return router.routes();
+    // }
     case "group": {
       return function group(_ctx, _next) {
         throw new Error("unimplemented");
@@ -72,7 +73,7 @@ function middlewarseByType(
          * Update ctx.state.req with the expr field
          */
         if (t.payload.outputMode.kind === "field") {
-          const parts = t.payload.outputMode.fieldName.split(".");
+          const parts: string[] = t.payload.outputMode.fieldName.split(".");
           const lastPartI = parts.length - 1;
           parts.reduce<Record<string, any>>((acc, it, i) => {
             if (!acc[it]) {
@@ -103,13 +104,13 @@ function middlewarseByType(
 function bindMiddlewareGraph(
   node: string,
   middlewaresById: Record<string, ClarityMiddleware>,
-  app: ClarityApplication,
+  app: ClarityApplication
 ): ClarityMiddleware {
   const existing = middlewaresById[node];
   if (existing) {
     return existing;
   }
-  const childNodes = app.state.sys.graph[node] || [];
+  const childNodes = app.context.state.sys.graph[node] || [];
   log.debug(`binding middleware @ ${node} + [${childNodes.length} children]`);
   const childrenMiddleware = childNodes.map((child) =>
     bindMiddlewareGraph(child, middlewaresById, app)
@@ -152,7 +153,7 @@ export const createSystem = async (sys: model.System) => {
       return next();
     });
     app.use(
-      bindMiddlewareGraph(ingressSettings.entityId, middlewaresById, app),
+      bindMiddlewareGraph(ingressSettings.entityId, middlewaresById, app)
     );
     acc[key] = app;
     return acc;
@@ -164,6 +165,6 @@ export const createSystem = async (sys: model.System) => {
       const app = serversByName[key];
       assert(app);
       return app.listen({ port });
-    }),
+    })
   );
 };

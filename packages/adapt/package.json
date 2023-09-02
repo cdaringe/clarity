@@ -1,0 +1,17 @@
+{
+  "name": "clarity-adapt-ts",
+  "main": "./dist/index.ts",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "devDependencies": {
+    "clarity-tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "@types/koa": "2.13.8",
+    "clarity-model": "workspace:*",
+    "koa": "2.14.2"
+  }
+}

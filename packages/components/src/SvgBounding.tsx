@@ -40,7 +40,7 @@ export const SvgBounding = ({
             height: `${y2 - y1}px`,
             position: "absolute",
             // border: "2px solid red",
-            // zIndex: -1,
+            zIndex: -1,
           });
         });
 

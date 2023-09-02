@@ -1,0 +1,15 @@
+{
+  "name": "clarity-model",
+  "main": "./dist/index.ts",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "zod": "3.22.2"
+  },
+  "devDependencies": {
+    "clarity-tsconfig": "workspace:*"
+  }
+}

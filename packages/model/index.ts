@@ -1,5 +1,4 @@
-import { Fetch } from "https://deno.land/x/oak@v10.5.1/middleware/proxy.ts";
-import { oak, zod } from "./deps.ts";
+import * as zod from "zod";
 
 const exprSym = Symbol("expr");
 export const expr = (payload: string): Expression => ({
@@ -16,10 +15,8 @@ export function toJson(ctx: unknown, payload: Ser): JSONValue {
   if (isExpr(payload)) {
     return eval(payload.payload);
   }
-  return JSON.stringify(
-    payload,
-    (key, value) =>
-      key ? (isObject(value) ? toJson(ctx, value) : value) : value,
+  return JSON.stringify(payload, (key, value) =>
+    key ? (isObject(value) ? toJson(ctx, value) : value) : value
   );
 }
 
@@ -29,7 +26,7 @@ function isObject(obj: unknown) {
 
 type RoutingDeclaration = {
   path: string;
-  method: oak.HTTPMethods;
+  method: "GET";
   entityId?: string;
 };
 
@@ -51,25 +48,25 @@ export type ClarityMiddlewareOptions =
   | { kind: "bodyparser"; payload?: never }
   | { kind: "response-json"; payload: Ser }
   | {
-    kind: "expression";
-    payload: {
-      /**
-       * @todo use JSONLogic for static, portable computation.
-       * For now... deno compatible js expressions
-       */
-      expr: Expression;
-      outputMode: { kind: "value" } | { kind: "field"; fieldName: string };
-    };
-  }
+      kind: "expression";
+      payload: {
+        /**
+         * @todo use JSONLogic for static, portable computation.
+         * For now... deno compatible js expressions
+         */
+        expr: Expression;
+        outputMode: { kind: "value" } | { kind: "field"; fieldName: string };
+      };
+    }
   | {
-    kind: "api-call";
-    payload: {
-      clientName: string;
-      options: {
-        init: RequestInit;
+      kind: "api-call";
+      payload: {
+        clientName: string;
+        options: {
+          init: RequestInit;
+        };
       };
     };
-  };
 
 const middlewareSchema = zod.object({
   kind: zod.string(),
@@ -148,8 +145,7 @@ export const systemSchema = zod
       if (!(ingress.entityId in sys.entities)) {
         ctx.addIssue({
           code: zod.ZodIssueCode.custom,
-          message:
-            `ingress[${key}] enitity ${ingress.entityId} missing from entities`,
+          message: `ingress[${key}] enitity ${ingress.entityId} missing from entities`,
           fatal: true,
         });
       }

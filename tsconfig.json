@@ -1,10 +1,12 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "baseUrl": ".",
-    "paths": {
-      "clarity-components": ["./packages/components/src/index.tsx"]
-    }
-  }
+  "references": [
+    { "path": "./packages/adapt/tsconfig.json" },
+    { "path": "./packages/components/tsconfig.json" },
+    { "path": "./packages/log/tsconfig.json" },
+    { "path": "./packages/model/tsconfig.json" },
+    { "path": "./packages/node/tsconfig.json" },
+    { "path": "./packages/react/tsconfig.json" },
+    { "path": "./apps/ui/tsconfig.json" }
+  ],
+  "exclude": ["dist", "**/dist/**"]
 }

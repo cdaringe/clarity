@@ -1,4 +1,4 @@
-import { model } from "./deps.ts";
+import { model } from "./deps.js";
 
 function generate(sys: model.System) {
   sys.ingress;

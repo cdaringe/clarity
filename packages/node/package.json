@@ -1,0 +1,15 @@
+{
+  "name": "clarity-node",
+  "main": "./dist/index.ts",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "clarity-react": "workspace:*"
+  },
+  "devDependencies": {
+    "clarity-tsconfig": "workspace:*"
+  }
+}

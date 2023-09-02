@@ -2,7 +2,13 @@
   "name": "clarity-workspace",
   "devDependencies": {
     "@types/node": "20.1.0",
+    "prettier-plugin-organize-imports": "3.2.2",
     "ts-node": "10.9.1",
     "typescript": "5.0.4"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "test": "pnpm -r test",
+    "build": "tsc"
   }
 }
