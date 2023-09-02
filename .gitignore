@@ -1,4 +1,4 @@
 node_modules
 apps/ui.old
 dist
-.js
+*.js

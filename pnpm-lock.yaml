@@ -100,8 +100,6 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
 
-  apps/ui.old: {}
-
   packages/adapt:
     dependencies:
       '@types/koa':
