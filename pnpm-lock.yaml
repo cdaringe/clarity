@@ -153,8 +153,8 @@ importers:
   packages/log:
     dependencies:
       pino:
-        specifier: 8.15.2
-        version: 8.15.2
+        specifier: 8.15.3
+        version: 8.15.3
     devDependencies:
       clarity-tsconfig:
         specifier: workspace:*
@@ -9554,8 +9554,8 @@ packages:
     resolution: {integrity: sha512-cHjPPsE+vhj/tnhCy/wiMh3M3z3h/j15zHQX+S9GkTBgqJuTuJzYJ4gUyACLhDaJ7kk9ba9iRDmbH2tJU03OiA==}
     dev: false
 
-  /pino@8.15.2:
-    resolution: {integrity: sha512-TmIG2mfyuqOKtNxW2nCSGNk7Izt/Y60LRjCBfRXoAssuozffisXXvIUl7toajrwfNyN6VzZmPSupQOnqo/2DKQ==}
+  /pino@8.15.3:
+    resolution: {integrity: sha512-wDds1+DH8VaREe4fpLEKttGnDoLiX3KR3AP5bHsrRwEZ93y+Z/HFC03zkGSxpIGWKDHg24sloVqGcIWoLCkTLQ==}
     hasBin: true
     dependencies:
       atomic-sleep: 1.0.0
