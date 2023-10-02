@@ -30,7 +30,7 @@
     "@storybook/blocks": "^7.0.22",
     "@storybook/nextjs": "^7.0.22",
     "@storybook/react": "^7.0.22",
-    "@storybook/testing-library": "0.2.1",
+    "@storybook/testing-library": "0.2.2",
     "@unocss/webpack": "^0.56.0",
     "autoprefixer": "^10.4.14",
     "eslint-plugin-storybook": "^0.6.12",
