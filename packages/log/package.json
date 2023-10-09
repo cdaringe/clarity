@@ -7,7 +7,7 @@
     "dev": "tsc -w"
   },
   "dependencies": {
-    "pino": "8.15.6"
+    "pino": "8.15.7"
   },
   "devDependencies": {
     "clarity-tsconfig": "workspace:*"
