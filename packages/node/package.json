@@ -11,7 +11,7 @@
     "react": "18.2.0"
   },
   "devDependencies": {
-    "@types/react": "18.2.30",
+    "@types/react": "18.2.31",
     "clarity-tsconfig": "workspace:*"
   }
 }
