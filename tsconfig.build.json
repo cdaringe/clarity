@@ -12,7 +12,6 @@
     { "path": "./packages/log/tsconfig.json" },
     { "path": "./packages/model/tsconfig.json" },
     { "path": "./packages/node/tsconfig.json" },
-    { "path": "./packages/react/tsconfig.json" },
     { "path": "./apps/ui/tsconfig.json" }
   ]
 }

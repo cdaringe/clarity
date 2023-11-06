@@ -2,6 +2,7 @@
   "name": "clarity-components",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
+  "module": "./src/index.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"
@@ -12,11 +13,11 @@
   },
   "devDependencies": {
     "@types/lodash": "4.14.200",
-    "@types/react": "18.2.35",
     "@types/react-dom": "18.2.14",
-    "react": "18.2.0",
+    "@types/react": "18.2.35",
+    "clarity-tsconfig": "workspace:*",
     "react-dom": ">=16",
-    "clarity-tsconfig": "workspace:*"
+    "react": "18.2.0"
   },
   "dependencies": {
     "clarity-node": "workspace:*",

@@ -1,67 +1,34 @@
-import type { FCC } from "clarity-react";
-import React from "react";
+import { ProcessorName } from "./emulator/processor";
 
-export type ClarityInput<T = unknown> =
-  | ClarityConstInput<T>
-  | ClarityStandardInput<T>;
-
-export interface ClarityStandardInput<T = unknown> {
-  name?: string;
-  type: T;
-  id: string;
-}
-
-export interface ClarityConstInput<T = any> extends ClarityStandardInput<T> {
-  value: T;
-}
-
-export type StandardNodeProps = {
+export interface NodeStandard<P extends ProcessorName> {
   /**
    * unique id of the node
    */
   id: string;
-  name: string;
+  inputIds?: string[];
+  processorName: P;
+}
+
+export type NodeGroup = {
+  id: string;
+  nodes: Node[];
+};
+export type NodeConst<T = unknown> = {
+  id: string;
+  // kind: "const";
+  value: T;
   type: string;
-  inputs?: {
-    embeddedIds?: string[]; // ClarityConstInput[];
-    externalIds?: string[]; // ClarityStandardInput[];
-  };
-  outputs?: ClarityStandardInput[];
-  processor?: string;
+};
+export type Node<T = unknown> = NodeStandard<any> | NodeConst | NodeGroup;
+
+export const getInputIds = (node: Node<unknown>): string[] => {
+  return ("inputIds" in node ? node.inputIds : null) || [];
 };
 
-export type FcDiv<P> = FCC<React.HTMLAttributes<HTMLDivElement> & P>;
-
-export type ConstNodeProps<T extends any = any> = T extends infer U
-  ? { id: string; const: ClarityConstInput<U> }
-  : never;
-
-export type NodeProps<Const = any> =
-  | StandardNodeProps
-  | ConstNodeProps<Const>
-  | NodeGroupProps;
-
-export type NodeGroupProps = {
-  nodes: NodeProps[];
-  io?: Record<IOid, Set<IOid>>;
-};
-
-type IOid = string;
-
-export type NodeComponent = FcDiv<NodeProps<any>>;
-
-export const getInputIds = (node: NodeProps): string[] => {
-  return "inputs" in node && node.inputs
-    ? [...(node.inputs.embeddedIds || []), ...(node.inputs.externalIds || [])]
-    : [];
-};
-
-export const getOutputs = (node: NodeProps): ClarityInput[] => {
-  if ("outputs" in node) {
-    return node.outputs || [];
+export const getOutputsIds = (node: Node): string[] => {
+  if ("processorName" in node) {
+    return node.processorName[1];
+  } else {
+    return [node.id];
   }
-  if ("const" in node) {
-    return [node.const];
-  }
-  return [];
 };

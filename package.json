@@ -7,9 +7,13 @@
     "typescript": "5.2.2"
   },
   "scripts": {
+    "clean": "pnpm -r exec rm -rf dist",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "pnpm -r test",
-    "build": "tsc --build --verbose"
+    "prebuild": "pnpm run clean",
+    "build": "tsc --build --verbose",
+    "prebuild:watch": "pnpm run clean",
+    "build:watch": "tsc --build --watch"
   }
 }

@@ -1,0 +1,40 @@
+num:
+  abs: JS_MATH
+  acos: JS_MATH
+  acosh: JS_MATH
+  asin: JS_MATH
+  asinh: JS_MATH
+  atan: JS_MATH
+  atan2: JS_MATH
+  atanh: JS_MATH
+  cbrt: JS_MATH
+  ceil: JS_MATH
+  clz32: JS_MATH
+  cos: JS_MATH
+  cosh: JS_MATH
+  div: "(x: number, y: number) => x / y"
+  exp: JS_MATH
+  expm1: JS_MATH
+  floor: JS_MATH
+  fround: JS_MATH
+  hypot: JS_MATH
+  imul: JS_MATH
+  log: JS_MATH
+  log10: JS_MATH
+  log1p: JS_MATH
+  log2: JS_MATH
+  max: JS_MATH
+  min: JS_MATH
+  mul: "(x: number, y: number) => x * y"
+  pow: JS_MATH
+  random: JS_MATH
+  round: JS_MATH
+  sign: JS_MATH
+  sin: JS_MATH
+  sinh: JS_MATH
+  sqrt: JS_MATH
+  sub: "(x: number, y: number) => x - y"
+  sum: "(x: number, y: number) => x + y"
+  tan: JS_MATH
+  tanh: JS_MATH
+  trunc: JS_MATH

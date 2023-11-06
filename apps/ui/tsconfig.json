@@ -1,28 +1,34 @@
 {
-  "extends": "../../tsconfig.json",
+  // @warn see https://github.com/vercel/turbo/issues/6298
+  // "extends": "../../tsconfig.json",
+  // "extends": "/Users/cdaringe/src/clarity/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "target": "ESNext",
+    // @warn remove when ^^ closed
+    "paths": {
+      "clarity-adapt": ["../../packages/adapt/src/index"],
+      "clarity-components": ["../../packages/components/src/index"],
+      "clarity-log": ["../../packages/log/src/index"],
+      "clarity-model": ["../../packages/model/src/index"],
+      "clarity-node": ["../../packages/node/src/index"]
+    },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "dist"],
-  "references": [{ "path": "../../packages/components/tsconfig.json" }]
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

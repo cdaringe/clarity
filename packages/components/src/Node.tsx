@@ -1,48 +1,55 @@
-import {
-  ConstNodeProps,
-  FcDiv,
-  NodeComponent,
-  NodeProps,
-  StandardNodeProps,
-  getInputIds,
-} from "clarity-node";
 import React from "react";
 import { ArrowSvg } from "./icon/ArrowSvg";
+import { FcDiv } from "./util/dom-components";
 
-export const getNodeInputElementId = (id: string, inputId: string) =>
-  `input_${id}_${inputId}`;
+type NodeGenericProps =
+  | {
+      kind: "standard";
+      node: NodeStandardProps;
+    }
+  | {
+      kind: "const";
+      node: NodeConstProps;
+    }
+  | { kind: "group"; node: NodeGenericProps[] };
 
-export const getNodeOutputElementId = (id: string, outputId: string) =>
-  `output_${id}_${outputId}`;
-
-export const Node: NodeComponent = (props) =>
-  "const" in props ? (
-    <ConstNode {...props} />
-  ) : "nodes" in props ? (
-    <NodeGroup {...props} />
+export const Node: FcDiv<NodeGenericProps> = ({ kind, node, ...rest }) =>
+  "const" === kind ? (
+    <ConstNode {...node} {...rest} />
+  ) : kind === "group" ? (
+    <>
+      {node.map((child, i) => (
+        <Node key={`${i}_${node.length}`} {...child} />
+      ))}
+    </>
   ) : (
-    <StandardNode {...props} />
+    <StandardNode {...node} {...rest} />
   );
 
 const IO_WIDTH = 10;
 const IO_MIDPOINT = IO_WIDTH / 2;
 
-export const ConstNode: FcDiv<ConstNodeProps> = ({
+export type NodeConstProps = {
+  displayValue: string;
+};
+
+export const ConstNode: FcDiv<NodeConstProps> = ({
+  // const props
+  displayValue,
+
+  // div props
   id,
-  const: constt,
   style,
   ...rest
 }) => (
   <div
-    id={id}
-    style={{ ...style, display: "inline-block", width: "min-content" }}
+    style={{ display: "inline-block", width: "min-content", ...style }}
     {...rest}
   >
     <div
       style={{
         display: "flex",
         alignItems: "center",
-        ...style,
       }}
     >
       <div
@@ -54,35 +61,41 @@ export const ConstNode: FcDiv<ConstNodeProps> = ({
           marginRight: 2,
         }}
       ></div>
-      <div>{String(constt.value)}</div>
+      <div>{displayValue}</div>
     </div>
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <svg
-        viewBox="0 0 10 10"
-        id={getNodeOutputElementId(id, constt.id)}
-        width={10}
-        height={10}
-      >
+      <svg viewBox="0 0 10 10" width={10} height={10}>
         <circle cx={5} cy={5} r={5} fill="black" />
       </svg>
     </div>
   </div>
 );
 
-export const StandardNode: FcDiv<StandardNodeProps> = (node) => {
+export interface NodeStandardProps {
+  name?: string;
+  inputs?: React.ReactNode[];
+  outputs?: React.ReactNode[];
+}
+
+export const StandardNode: FcDiv<NodeStandardProps> = (props) => {
   const {
-    id,
+    // node
+    name,
+    inputs,
+    outputs,
+
+    // react
     children,
-    name = "-",
-    type,
-    inputs: _,
-    outputs = [],
-    processor,
-    ...rest
-  } = node;
-  const inputIds = getInputIds(node);
+
+    // dom
+    style,
+    ...restDomProps
+  } = props;
   return (
-    <div id={id} style={{ display: "flex", flexDirection: "column" }} {...rest}>
+    <div
+      style={{ display: "flex", flexDirection: "column", ...style }}
+      {...restDomProps}
+    >
       {/* INPUTS */}
       <div
         style={{
@@ -93,22 +106,17 @@ export const StandardNode: FcDiv<StandardNodeProps> = (node) => {
         }}
       >
         <div style={{ display: "flex" }}>
-          {inputIds.length ? (
-            inputIds.map((input_id) => (
-              <ArrowSvg
-                style={{ marginRight: 2 }}
-                id={getNodeInputElementId(id, input_id)}
-                key={input_id}
-                variant="full"
-              />
-            ))
-          ) : (
-            <ArrowSvg />
-          )}
+          {inputs?.map((___, input_id) => (
+            <ArrowSvg
+              style={{ marginRight: 2 }}
+              key={input_id}
+              variant="full"
+            />
+          )) ?? null}
         </div>
         <div>
-          <span style={{ marginRight: 4 }}>{name}</span>
-          <span>({type})</span>
+          {name && <span style={{ marginRight: 4 }}>{name}</span>}
+          {/* <span>({processor[1]!.map((x) => x.type).join(", ")})</span> */}
         </div>
       </div>
 
@@ -129,7 +137,7 @@ export const StandardNode: FcDiv<StandardNodeProps> = (node) => {
         })}
         {embedded.length ? <br /> : null} */}
         {children}
-        {processor}
+        {name}
       </div>
 
       {/* OUTPUTS */}
@@ -141,83 +149,10 @@ export const StandardNode: FcDiv<StandardNodeProps> = (node) => {
         }}
       >
         <div style={{ display: "flex" }}>
-          {outputs.length ? (
-            outputs.map((output, i) => (
-              <ArrowSvg
-                style={{ marginRight: 2 }}
-                id={getNodeOutputElementId(id, output.id)}
-                key={i}
-                variant="full"
-              />
-            ))
-          ) : (
-            <ArrowSvg />
-          )}
+          {outputs?.map((____, i) => (
+            <ArrowSvg style={{ marginRight: 2 }} key={i} variant="full" />
+          )) ?? null}
         </div>
-      </div>
-    </div>
-  );
-};
-
-import { NodeGroupProps, getOutputs } from "clarity-node";
-import { groupBy } from "lodash";
-import { intersect } from "set-fns";
-import { DirectBus } from "./DirectBus";
-
-export const NodeGroup: FcDiv<NodeGroupProps> = ({
-  nodes,
-  io = {},
-  ...rest
-}) => {
-  let prevNodeProps: NodeProps[] = [];
-  const children = React.useMemo(
-    () =>
-      nodes.map((node, i) => {
-        const inputIds = new Set(getInputIds(node));
-        const prev = nodes[i - 1];
-        prev && prevNodeProps.push(prev);
-        const directIo = prevNodeProps
-          ? prevNodeProps.reduce((acc, outNode) => {
-              const outputIds = getOutputs(outNode).map((o) => o.id);
-              const [inputId, ...rest] = [...intersect(outputIds, inputIds)];
-              if (inputId) {
-                if (!("id" in outNode)) {
-                  throw new Error(`id not found in ${outNode}`);
-                }
-                if (!("id" in node)) {
-                  throw new Error(`id not found in ${node}`);
-                }
-                acc[getNodeOutputElementId(outNode.id, inputId)] =
-                  getNodeInputElementId(node.id, inputId);
-              }
-              return acc;
-            }, {} as Record</*from*/ string, /*to*/ string>)
-          : null;
-        const typ =
-          "const" in node ? ("const" as const) : ("standard" as const);
-        return {
-          type: typ,
-          element: (
-            <React.Fragment key={i}>
-              {directIo ? <DirectBus io={directIo} /> : null}
-              <Node
-                style={typ === "const" ? { marginRight: 4 } : {}}
-                {...node}
-              />
-            </React.Fragment>
-          ),
-        };
-      }),
-    [nodes]
-  );
-  const nodesByType = groupBy(children, "type");
-  return (
-    <div>
-      <div style={{ display: "flex", flexDirection: "row" }} {...rest}>
-        {nodesByType.const?.map((n) => n.element)}
-      </div>
-      <div style={{ display: "flex", flexDirection: "column" }} {...rest}>
-        {nodesByType.standard?.map((n) => n.element)}
       </div>
     </div>
   );
