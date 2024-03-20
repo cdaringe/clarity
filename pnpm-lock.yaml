@@ -13,13 +13,13 @@ importers:
         version: 20.8.10
       prettier-plugin-organize-imports:
         specifier: 3.2.3
-        version: 3.2.3(prettier@3.0.3)(typescript@5.2.2)
+        version: 3.2.3(prettier@3.0.3)(typescript@5.4.3)
       ts-node:
         specifier: 10.9.1
-        version: 10.9.1(@types/node@20.8.10)(typescript@5.2.2)
+        version: 10.9.1(@types/node@20.8.10)(typescript@5.4.3)
       typescript:
-        specifier: 5.2.2
-        version: 5.2.2
+        specifier: 5.4.3
+        version: 5.4.3
 
   apps/ui:
     dependencies:
@@ -161,25 +161,6 @@ importers:
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
-
-  packages/react:
-    dependencies:
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: '>=16'
-        version: 18.2.0(react@18.2.0)
-    devDependencies:
-      '@types/react':
-        specifier: 18.2.35
-        version: 18.2.35
-      '@types/react-dom':
-        specifier: 18.2.14
-        version: 18.2.14
-      clarity-tsconfig:
-        specifier: workspace:*
-        version: link:../tsconfig
 
   packages/tsconfig: {}
 
@@ -1969,6 +1950,7 @@ packages:
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
+    dev: false
 
   /eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
@@ -3089,6 +3071,7 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+    dev: false
 
   /node-fetch-native@1.4.1:
     resolution: {integrity: sha512-NsXBU0UgBxo2rQLOeWNZqS3fvflWePMECr8CoSWoSTqCqGbVVsvl9vZu1HfQicYN0g5piV9Gh8RTEvo/uP752w==}
@@ -3374,7 +3357,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.31
-      ts-node: 10.9.1(@types/node@20.8.10)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@20.8.10)(typescript@5.4.3)
       yaml: 2.3.4
     dev: true
 
@@ -3413,7 +3396,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: false
 
-  /prettier-plugin-organize-imports@3.2.3(prettier@3.0.3)(typescript@5.2.2):
+  /prettier-plugin-organize-imports@3.2.3(prettier@3.0.3)(typescript@5.4.3):
     resolution: {integrity: sha512-KFvk8C/zGyvUaE3RvxN2MhCLwzV6OBbFSkwZ2OamCrs9ZY4i5L77jQ/w4UmUr+lqX8qbaqVq6bZZkApn+IgJSg==}
     peerDependencies:
       '@volar/vue-language-plugin-pug': ^1.0.4
@@ -3427,7 +3410,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.0.3
-      typescript: 5.2.2
+      typescript: 5.4.3
     dev: true
 
   /prettier@3.0.3:
@@ -3981,7 +3964,7 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /ts-node@10.9.1(@types/node@20.8.10)(typescript@5.2.2):
+  /ts-node@10.9.1(@types/node@20.8.10)(typescript@5.4.3):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -4007,7 +3990,7 @@ packages:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 5.2.2
+      typescript: 5.4.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
@@ -4110,6 +4093,13 @@ packages:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: false
+
+  /typescript@5.4.3:
+    resolution: {integrity: sha512-KrPd3PKaCLr78MalgiwJnA25Nm8HAmdwN3mYUYZgG/wizIo9EainNVQI9/yDavtVFRN2h3k8uf3GLHuhDMgEHg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true
 
   /ufo@1.3.1:
     resolution: {integrity: sha512-uY/99gMLIOlJPwATcMVYfqDSxUR9//AUcgZMzwfSTJPDKzA1S8mX4VLqa+fiAtveraQUBCz4FFcwVZBGbwBXIw==}
