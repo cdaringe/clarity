@@ -10,8 +10,8 @@
     "clarity-tsconfig": "workspace:*"
   },
   "dependencies": {
-    "@types/koa": "2.13.10",
+    "@types/koa": "2.15.0",
     "clarity-model": "workspace:*",
-    "koa": "2.14.2"
+    "koa": "2.15.2"
   }
 }
