@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@types/node": "^20.8.10",
-    "@types/react": "18.2.35",
-    "@types/react-dom": "18.2.14",
+    "@types/react": "18.2.73",
+    "@types/react-dom": "18.2.23",
     "clarity-components": "workspace:*",
     "eslint": "^8.53.0",
     "eslint-config-next": "^14.0.1",

@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.5",
-    "@types/react": "18.2.35",
+    "@types/react": "18.2.73",
     "clarity-tsconfig": "workspace:*",
     "js-yaml": "4.1.0"
   }
