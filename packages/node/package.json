@@ -7,11 +7,11 @@
     "dev": "tsc -w"
   },
   "dependencies": {
-    "react": "18.2.0"
+    "react": "18.3.1"
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.5",
-    "@types/react": "18.2.35",
+    "@types/react": "18.3.3",
     "clarity-tsconfig": "workspace:*",
     "js-yaml": "4.1.0"
   }
